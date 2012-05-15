@@ -18,10 +18,10 @@
 {
     self = [self init];
     if (self) {
+        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
         self.spriteBatchNode = node;
         contentSize_ = size;
         action_ = Block_copy(action);
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
         [self addChild:self.spriteBatchNode];
     }
     return (self);
@@ -36,10 +36,7 @@
 }
 
 - (BOOL)containsTouchLocation:(UITouch *)touch {
-    return CGRectContainsPoint(CGRectMake(self.position.x, 
-                                          self.position.y, 
-                                          self.contentSize.width, 
-                                          self.contentSize.height), [self convertTouchToNodeSpaceAR:touch]);
+    return CGRectContainsPoint(CGRectMake(0, 0, self.contentSize.width, self.contentSize.height), [self convertTouchToNodeSpaceAR:touch]);
 }
 
 #pragma mark - CCTargetedTouchDelegate
