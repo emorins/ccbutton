@@ -17,7 +17,7 @@ typedef void (^ccbutton_block_t)(void);
 {
     @public
     CCSpriteBatchNode *spriteBatchNode_;
-    @private
+    @protected
     ccbutton_block_t action_;
 }
 
@@ -26,7 +26,15 @@ typedef void (^ccbutton_block_t)(void);
  */
 @property (retain, readwrite) CCSpriteBatchNode *spriteBatchNode;
 
+#pragma mark - cycle
+
 - (id)initWithSpriteBatchNode:(CCSpriteBatchNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action;
+
+#pragma mark - public method
+
+- (BOOL)containsTouchLocation:(UITouch *)touch;
+
+#pragma mark - CCTargetedTouchDelegate
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event;
