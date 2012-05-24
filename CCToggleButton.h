@@ -20,7 +20,7 @@
     ccbutton_block_t offAction_;
 }
 
-@property (assign, readonly) bool toggle;
+@property (assign, readwrite) bool toggle;
 
 #pragma mark - cycle
 
