@@ -31,6 +31,11 @@
 
 #pragma mark - public method
 
+- (BOOL)toggle
+{
+    return toggle_;
+}
+
 - (void)setToggle:(BOOL)toggle
 {
     if (toggle == YES) {

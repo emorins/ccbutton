@@ -15,12 +15,12 @@
 @interface CCToggleButton : CCButton
 {
     @public
-    bool toggle_;
+    BOOL toggle_;
     @protected
     ccbutton_block_t offAction_;
 }
 
-@property (assign, readwrite) bool toggle;
+@property (assign, readwrite) BOOL toggle;
 
 #pragma mark - cycle
 
