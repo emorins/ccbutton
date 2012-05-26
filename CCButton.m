@@ -10,26 +10,26 @@
 
 @implementation CCButton
 
-@synthesize spriteBatchNode = spriteBatchNode_;
+@synthesize node = node_;
 
 #pragma mark - cycle
 
-- (id)initWithSpriteBatchNode:(CCSpriteBatchNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action
 {
     self = [self init];
     if (self) {
         [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
-        self.spriteBatchNode = node;
+        self.node = node;
         contentSize_ = size;
         action_ = Block_copy(action);
-        [self addChild:self.spriteBatchNode];
+        [self addChild:self.node];
     }
     return (self);
 }
 
 - (void)dealloc {
-    if (spriteBatchNode_ != nil) {
-        [spriteBatchNode_ release], spriteBatchNode_ = nil;
+    if (node_ != nil) {
+        [node_ release], node_ = nil;
     }
     [self removeAllChildrenWithCleanup:YES];
     [super dealloc];

@@ -16,7 +16,7 @@ typedef void (^ccbutton_block_t)(void);
 @interface CCButton : CCNode<CCTargetedTouchDelegate>
 {
     @public
-    CCSpriteBatchNode *spriteBatchNode_;
+    CCNode *node_;
     @protected
     ccbutton_block_t action_;
 }
@@ -24,11 +24,11 @@ typedef void (^ccbutton_block_t)(void);
 /*
  * Button image
  */
-@property (retain, readwrite) CCSpriteBatchNode *spriteBatchNode;
+@property (retain, readwrite) CCNode *node;
 
 #pragma mark - cycle
 
-- (id)initWithSpriteBatchNode:(CCSpriteBatchNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action;
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action;
 
 #pragma mark - public method
 

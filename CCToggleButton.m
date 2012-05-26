@@ -14,17 +14,17 @@
 
 #pragma mark - cycle
 
-- (id)initWithSpriteBatchNode:(CCSpriteBatchNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)offAction
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)offAction
 {
     self = [self init];
     if (self) {
         [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
-        self.spriteBatchNode = node;
+        self.node = node;
         contentSize_ = size;
         self.toggle = NO;
         action_ = Block_copy(action);
         offAction_ = Block_copy(offAction);
-        [self addChild:self.spriteBatchNode];
+        [self addChild:self.node];
     }
     return (self);
 }
@@ -39,11 +39,11 @@
 - (void)setToggle:(BOOL)toggle
 {
     if (toggle == YES) {
-        [self.spriteBatchNode getChildByTag:CCTOGGLEBUTTON_OFF_SPRITE_TAG].visible = NO;
-        [self.spriteBatchNode getChildByTag:CCTOGGLEBUTTON_ON_SPRITE_TAG].visible = YES;
+        [self.node getChildByTag:CCTOGGLEBUTTON_OFF_SPRITE_TAG].visible = NO;
+        [self.node getChildByTag:CCTOGGLEBUTTON_ON_SPRITE_TAG].visible = YES;
     } else {
-        [self.spriteBatchNode getChildByTag:CCTOGGLEBUTTON_OFF_SPRITE_TAG].visible = YES;
-        [self.spriteBatchNode getChildByTag:CCTOGGLEBUTTON_ON_SPRITE_TAG].visible = NO;
+        [self.node getChildByTag:CCTOGGLEBUTTON_OFF_SPRITE_TAG].visible = YES;
+        [self.node getChildByTag:CCTOGGLEBUTTON_ON_SPRITE_TAG].visible = NO;
     }
     toggle_ = toggle;
 }

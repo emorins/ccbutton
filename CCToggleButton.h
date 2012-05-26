@@ -24,6 +24,6 @@
 
 #pragma mark - cycle
 
-- (id)initWithSpriteBatchNode:(CCSpriteBatchNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)action;
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)action;
 
 @end
