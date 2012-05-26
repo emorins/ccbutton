@@ -45,6 +45,9 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if (!self.visible) {
+        return NO;
+    }
     bool isTouch = [self containsTouchLocation:touch];
     if (isTouch) {
         action_();
