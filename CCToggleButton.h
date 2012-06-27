@@ -16,14 +16,14 @@
 {
     @public
     BOOL toggle_;
-    @protected
-    ccbutton_block_t offAction_;
+    SEL offSelector_;
 }
 
 @property (assign, readwrite) BOOL toggle;
+@property (assign, readwrite) SEL offSelector;
 
 #pragma mark - cycle
 
-- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)action;
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size target:(id)target selector:(SEL)selector offSelector:(SEL)offSelector;
 
 @end

@@ -10,20 +10,20 @@
 
 @implementation CCToggleButton
 
-@synthesize toggle = toggle_;
+@synthesize offSelector = offSelector_, toggle = toggle_;
 
 #pragma mark - cycle
 
-- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action offAction:(ccbutton_block_t)offAction
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size target:(id)target selector:(SEL)selector offSelector:(SEL)offSelector
 {
     self = [self init];
     if (self) {
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
         self.node = node;
         contentSize_ = size;
         self.toggle = NO;
-        action_ = Block_copy(action);
-        offAction_ = Block_copy(offAction);
+        self.target = target;
+        selector_ = selector;
+        offSelector_ = offSelector;
         [self addChild:self.node];
     }
     return (self);
@@ -59,9 +59,9 @@
     if (isTouch) {
         self.toggle = !self.toggle;
         if (self.toggle) {
-            action_();
+            [target_ performSelector:selector_];
         } else {
-            offAction_();
+            [target_ performSelector:offSelector_];
         }
     }
     return isTouch;

@@ -17,18 +17,17 @@ typedef void (^ccbutton_block_t)(void);
 {
     @public
     CCNode *node_;
-    @protected
-    ccbutton_block_t action_;
+    id target_;
+    SEL selector_;
 }
 
-/*
- * Button image
- */
-@property (retain, readwrite) CCNode *node;
+@property (assign, readwrite) CCNode *node;
+@property (retain, readwrite) id target;
+@property (assign, readwrite) SEL selector;
 
 #pragma mark - cycle
 
-- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action;
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size target:(id)target selector:(SEL)selector;
 
 #pragma mark - public method
 

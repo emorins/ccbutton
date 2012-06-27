@@ -10,29 +10,40 @@
 
 @implementation CCButton
 
-@synthesize node = node_;
+@synthesize target = target_, selector = selector_, node = node_;
 
 #pragma mark - cycle
 
-- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size action:(ccbutton_block_t)action
+- (id)initWithNode:(CCNode *)node contentSize:(CGSize)size target:(id)target selector:(SEL)selector
 {
     self = [self init];
     if (self) {
-        [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
-        self.node = node;
+        node_ = node;
         contentSize_ = size;
-        action_ = Block_copy(action);
+        self.target = target;
+        selector_ = selector;
         [self addChild:self.node];
     }
     return (self);
 }
 
 - (void)dealloc {
-    if (node_ != nil) {
-        [node_ release], node_ = nil;
-    }
-    [self removeAllChildrenWithCleanup:YES];
+    [target_ release], target_ = nil;
     [super dealloc];
+}
+
+#pragma mark - CCNode method
+
+- (void)onEnter
+{
+    [super onEnter];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:1-self.zOrder swallowsTouches:YES];
+}
+
+- (void)onExit
+{
+    [[[CCDirector sharedDirector] touchDispatcher] removeDelegate:self];
+    [super onExit];
 }
 
 #pragma mark - public method
@@ -50,7 +61,7 @@
     }
     bool isTouch = [self containsTouchLocation:touch];
     if (isTouch) {
-        action_();
+        [target_ performSelector:selector_];
     }
     return isTouch;
 }
