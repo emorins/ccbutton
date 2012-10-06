@@ -19,11 +19,13 @@ typedef void (^ccbutton_block_t)(void);
     CCNode *node_;
     id target_;
     SEL selector_;
+    GLubyte opacity_;
 }
 
 @property (assign, readwrite) CCNode *node;
 @property (retain, readwrite) id target;
 @property (assign, readwrite) SEL selector;
+@property (nonatomic,readwrite) GLubyte opacity;
 
 #pragma mark - cycle
 

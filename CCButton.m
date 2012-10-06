@@ -32,6 +32,33 @@
     [super dealloc];
 }
 
+#pragma mark - access method
+
+- (void)setVisible:(BOOL)visible
+{
+    [super setVisible:visible];
+    CCNode *node = nil;
+    CCARRAY_FOREACH(self.children, node) {
+        node.visible = visible;
+    }
+}
+
+- (GLubyte)opacity
+{
+    return opacity_;
+}
+
+- (void)setOpacity:(GLubyte)opacity
+{
+    opacity_ = opacity;
+    
+    for (CCSprite *node in [self children]) {
+        if ([node respondsToSelector:@selector(setOpacity:)]) {
+            node.opacity = opacity;
+        }
+    }
+}
+
 #pragma mark - CCNode method
 
 - (void)onEnter

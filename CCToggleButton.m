@@ -29,7 +29,7 @@
     return (self);
 }
 
-#pragma mark - public method
+#pragma mark - access method
 
 - (BOOL)toggle
 {
