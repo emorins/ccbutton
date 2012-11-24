@@ -24,6 +24,7 @@
         self.target = target;
         selector_ = selector;
         offSelector_ = offSelector;
+        enable_ = YES;
         [self addChild:self.node];
     }
     return (self);
@@ -52,7 +53,7 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (!self.visible) {
+    if (!self.visible || !self.enable) {
         return NO;
     }
     bool isTouch = [self containsTouchLocation:touch];
