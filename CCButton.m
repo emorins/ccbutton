@@ -89,7 +89,7 @@
     }
     bool isTouch = [self containsTouchLocation:touch];
     if (isTouch) {
-        [target_ performSelector:selector_];
+        [target_ performSelector:selector_ withObject:self];
     }
     return isTouch;
 }

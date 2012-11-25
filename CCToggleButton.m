@@ -60,9 +60,9 @@
     if (isTouch) {
         self.toggle = !self.toggle;
         if (self.toggle) {
-            [target_ performSelector:selector_];
+            [target_ performSelector:selector_ withObject:self];
         } else {
-            [target_ performSelector:offSelector_];
+            [target_ performSelector:offSelector_ withObject:self];
         }
     }
     return isTouch;
