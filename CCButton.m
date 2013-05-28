@@ -76,8 +76,11 @@
 
 #pragma mark - public method
 
-- (BOOL)containsTouchLocation:(UITouch *)touch {
-    return CGRectContainsPoint(CGRectMake(0, 0, self.contentSize.width, self.contentSize.height), [self convertTouchToNodeSpaceAR:touch]);
+- (BOOL)containsTouchLocation:(UITouch *)touch
+{
+    return CGRectContainsPoint(CGRectMake(-self.anchorPoint.x*self.contentSize.width,
+                                          -self.anchorPoint.y*self.contentSize.height,
+                                          self.contentSize.width, self.contentSize.height), [self convertTouchToNodeSpaceAR:touch]);
 }
 
 #pragma mark - CCTargetedTouchDelegate
